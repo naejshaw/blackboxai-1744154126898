@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Profissional</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-600 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Painel do Profissional</h1>
+            <div class="flex items-center space-x-4">
+                <button id="newServiceBtn" class="bg-white text-green-600 px-4 py-2 rounded-md hover:bg-green-50">
+                    <i class="fas fa-plus mr-2"></i>Novo Serviço
+                </button>
+                <button id="logoutBtn" class="hover:text-green-200">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Appointments -->
+            <div class="bg-white p-4 rounded-lg shadow-md col-span-2">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Agendamentos</h2>
+                    <div class="flex space-x-2">
+                        <input type="date" id="dateFilter" class="border rounded px-2 py-1">
+                        <input type="text" id="clientFilter" placeholder="Filtrar cliente" class="border rounded px-2 py-1">
+                    </div>
+                </div>
+                <div id="appointmentsList" class="space-y-4">
+                    <!-- Appointments will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div class="space-y-6">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold mb-4">Meus Serviços</h2>
+                    <div id="servicesList" class="space-y-3">
+                        <!-- Services will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <h2 class="text-lg font-semibold mb-4">Estatísticas</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-blue-50 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600">Agendados</p>
+                            <p id="scheduledCount" class="text-xl font-bold">0</p>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600">Concluídos</p>
+                            <p id="completedCount" class="text-xl font-bold">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Service Modal -->
+    <div id="serviceModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Novo Serviço</h3>
+                <button id="closeServiceModalBtn" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="serviceForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Nome</label>
+                    <input type="text" id="serviceName" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Descrição</label>
+                    <textarea id="serviceDescription" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"></textarea>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Duração (min)</label>
+                        <input type="number" id="serviceDuration" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Preço (R$)</label>
+                        <input type="number" step="0.01" id="servicePrice" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">
+                    Salvar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/professional.js"></script>
+</body>
+</html>
